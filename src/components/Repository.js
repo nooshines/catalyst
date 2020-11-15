@@ -4,13 +4,51 @@ import styled from "styled-components";
 import Contributor from "./Contributor";
 
 const CardWrapper = styled.div`
+  padding: 20px;
   border: 1px solid #ccc;
   color: black;
   text-align: center;
   :hover {
     background: #f8f8f8;
-    cursor: pointer;
   }
+`;
+
+const Name = styled.div`
+  padding: 10px;
+  font-weight: bold;
+  font-size: 25px;
+  color: #bb2205;
+`;
+
+const Description = styled.div`
+  padding: 10px;
+  font-size: 13px;
+`;
+
+const GitHubRepo = styled.div`
+  padding: 10px;
+  a {
+    cursor: pointer;
+    color: black;
+    font-weight: bold;
+    color: #393e46;
+    :hover {
+      color: black;
+    }
+  }
+`;
+
+const Title = styled.span`
+  padding: 10px;
+  font-weight: bold;
+`;
+
+const Fork = styled.div`
+  padding: 10px;
+`;
+
+const Wrapper = styled.div`
+  padding: 5px;
 `;
 
 const Repository = ({ repository }) => {
@@ -29,21 +67,31 @@ const Repository = ({ repository }) => {
 
   return (
     <CardWrapper>
-      <h4>Name</h4>
-      <div>{repository.name}</div>
-      <h4>Description</h4>
-      <div>{repository.description}</div>
-      <a href={repository.git_url}>GitHub URL</a>
-      <h4>is this repository Forked ? </h4>
-      <div>{repository.fork ? "forked" : "not forked"}</div>
-      <h4>Star Count</h4>
-      <div>{repository.stargazers_count}</div>
-      <h4>Watchers Count</h4>
-      <div>{repository.watchers_count}</div>
-      <h4>licence</h4>
-      <div>{repository.license ? repository.license.name : "No License"}</div>
-      <h4>Language</h4>
-      <div>{repository.language}</div>
+      <Name>{repository.name}</Name>
+      <Description>{repository.description}</Description>
+      <Wrapper>
+        <Title>Star Count :</Title>
+        <span>{repository.stargazers_count}</span>
+      </Wrapper>
+      <Wrapper>
+        <Title> Watchers Count :</Title>
+        <span>{repository.watchers_count}</span>
+      </Wrapper>
+      <Wrapper>
+        <Title> Licence :</Title>
+        <span>
+          {repository.license ? repository.license.name : "No License"}
+        </span>
+      </Wrapper>
+      <Wrapper>
+        <Title>Language :</Title>
+        <span>{repository.language}</span>
+      </Wrapper>
+      <Fork>{repository.fork ? "Forked" : "Not Forked"}</Fork>
+      <GitHubRepo>
+        <a href={repository.git_url}>GitHub URL</a>
+      </GitHubRepo>
+
       {/* <h4>contributers</h4>
       <h4>Created At</h4>
       <div>{repository.created_at}</div>
