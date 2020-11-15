@@ -1,6 +1,18 @@
 import React, { Fragment, useState, useEffect } from "react";
 import axios from "axios";
+import styled from "styled-components";
 import Repository from "./Repository";
+
+const Grid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 20px;
+  width: 100%;
+  padding: 20px;
+  @media (max-width: 600px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+`;
 
 const Repositories = () => {
   const [repositories, setRepositories] = useState([]);
@@ -21,11 +33,11 @@ const Repositories = () => {
 
   console.log(repositories);
   return (
-    <Fragment>
+    <Grid>
       {repositories.map((repository) => {
         return <Repository key={repository.id} repository={repository} />;
       })}
-    </Fragment>
+    </Grid>
   );
 };
 
