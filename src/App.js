@@ -1,14 +1,14 @@
 import React, { Fragment } from "react";
 
 import Repositories from "./components/Repositories";
-import Details from "./components/Details";
+import Navbar from "./components/Navbar";
 
 import "./App.css";
 
 function App() {
   return (
     <Fragment>
-      <Details />
+      <Navbar />
       <div className="mainContainer">
         <Repositories />
       </div>

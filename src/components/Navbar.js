@@ -4,15 +4,29 @@ import axios from "axios";
 
 const Nav = styled.div`
   display: flex;
-  /* justify-content: space-between; */
   align-items: center;
-  margin-bottom: 20px;
   padding: 0.7rem 2rem;
   position: fixed;
   z-index: 1;
   width: 100%;
   top: 0;
   border-bottom: solid 1px red;
+  background-color: white;
+`;
+
+const Showcase = styled.div`
+  padding: 150px;
+  background-color: black;
+  color: white;
+  .description {
+    font-size: 40px;
+  }
+  .title {
+    padding: 10px;
+  }
+  .location {
+    padding: 10px;
+  }
 `;
 
 const Image = styled.img`
@@ -51,15 +65,16 @@ const Navbar = () => {
         <Image src={details.avatar_url} />
         <Name>{details.name}</Name>
       </Nav>
-
-      <h4>{details.description}</h4>
-      <div>{details.location}</div>
-      <h4>Total Number of Repositories</h4>
-      <div>{details.public_repos}</div>
-      <h4>GitHub URL</h4>
-      <div>{details.url}</div>
-      <h4>Blog URL</h4>
-      <div>{details.blog}</div>
+      <Showcase>
+        <div className="description">{details.description}</div>
+        <div className="location">{details.location}</div>
+        <div className="title">Total Number of Repositories</div>
+        <div className="numberRepos">{details.public_repos}</div>
+        <div className="title">GitHub URL</div>
+        <div className="repo">{details.url}</div>
+        <div className="title">Blog URL</div>
+        <div className="blog">{details.blog}</div>
+      </Showcase>
     </Fragment>
   );
 };
