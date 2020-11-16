@@ -38,6 +38,10 @@ const GitHubRepo = styled.div`
   }
 `;
 
+const Icon = styled.i`
+  padding-right: 5px;
+`;
+
 const Title = styled.span`
   padding: 10px;
   font-weight: bold;
@@ -87,10 +91,20 @@ const Repository = ({ repository }) => {
         <Title>Language :</Title>
         <span>{repository.language}</span>
       </Wrapper>
-      <Fork>{repository.fork ? "Forked" : "Not Forked"}</Fork>
+      <Fork>
+        <Icon className="fas fa-code-branch" />
+        {repository.fork ? "Forked" : "Not Forked"}
+      </Fork>
       <GitHubRepo>
+        <Icon className="fab fa-github" />
         <a href={repository.git_url}>GitHub URL</a>
       </GitHubRepo>
+      <Wrapper>
+        <Title>Contributers:</Title>
+        {contributors.map((contributor) => {
+          <Contributor key={contributor.id} contributor={contributor} />;
+        })}
+      </Wrapper>
 
       {/* <h4>contributers</h4>
       <h4>Created At</h4>
