@@ -80,19 +80,19 @@ const Repositories = () => {
     setFilteredRepos(repos);
   }, [filter]);
 
-  const sortRepos = (sort) => {
+  const sortRepos = (sort, orderBy) => {
     let repos = filteredRepos;
     if (sort === "created") {
       repos = filteredRepos.sort((a, b) => {
         if (
-          order === "asc"
+          orderBy === "asc"
             ? a.created_at > b.created_at
             : a.created_at < b.created_at
         ) {
           return 1;
         }
         if (
-          order === "asc"
+          orderBy === "asc"
             ? a.created_at < b.created_at
             : a.created_at > b.created_at
         ) {
@@ -102,20 +102,28 @@ const Repositories = () => {
       });
     } else if (sort === "updated") {
       repos = filteredRepos.sort((a, b) => {
-        if (a.updated_at > b.updated_at) {
+        if (
+          orderBy === "asc"
+            ? a.updated_at > b.updated_at
+            : a.updated_at < b.updated_at
+        ) {
           return 1;
         }
-        if (a.updated_at < b.updated_at) {
+        if (
+          orderBy === "asc"
+            ? a.updated_at < b.updated_at
+            : a.updated_at > b.updated_at
+        ) {
           return -1;
         }
         return 0;
       });
     } else if (sort === "fullname") {
       repos = filteredRepos.sort((a, b) => {
-        if (a.name > b.name) {
+        if (orderBy === "asc" ? a.name > b.name : a.name < b.name) {
           return 1;
         }
-        if (a.name < b.name) {
+        if (orderBy === "asc" ? a.name < b.name : a.name > b.name) {
           return -1;
         }
         return 0;
@@ -135,7 +143,7 @@ const Repositories = () => {
 
   const handleOrderChange = (event) => {
     setOrder(event.target.value);
-    setSort(event.target.value);
+    sortRepos(sort, event.target.value);
   };
 
   //get Catalyst Repositories
