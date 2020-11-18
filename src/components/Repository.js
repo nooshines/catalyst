@@ -4,7 +4,6 @@ import styled from "styled-components";
 import Contributor from "./Contributor";
 
 const CardWrapper = styled.div`
-  padding: 20px;
   border: 1px solid #ccc;
   color: black;
   text-align: center;
@@ -55,6 +54,11 @@ const Wrapper = styled.div`
   padding: 5px;
 `;
 
+const Cont = styled.div`
+  padding: 5px;
+  font-weight: bold;
+`;
+
 const Repository = ({ repository }) => {
   const [contributors, setContributors] = useState([]);
 
@@ -100,17 +104,14 @@ const Repository = ({ repository }) => {
         <a href={repository.git_url}>GitHub URL</a>
       </GitHubRepo>
       <Wrapper>
-        <Title>Contributers:</Title>
-        {contributors.map((contributor) => {
-          <Contributor key={contributor.id} contributor={contributor} />;
-        })}
+        <Cont>Contributers:</Cont>
+        {contributors.length &&
+          contributors.map((contributor) => {
+            return (
+              <Contributor key={contributor.id} contributor={contributor} />
+            );
+          })}
       </Wrapper>
-
-      {/* <h4>contributers</h4>
-      <h4>Created At</h4>
-      <div>{repository.created_at}</div>
-      <h4>Updated At</h4>
-      <div>{repository.updated_at}</div> */}
     </CardWrapper>
   );
 };

@@ -15,10 +15,12 @@ const Nav = styled.div`
 `;
 
 const Showcase = styled.div`
+  text-align: center;
   padding: 150px;
   background-color: black;
   color: white;
   .description {
+    padding-bottom: 50px;
     font-size: 40px;
   }
   .title {
@@ -26,6 +28,21 @@ const Showcase = styled.div`
   }
   .location {
     padding: 10px;
+  }
+  a {
+    color: white;
+    text-decoration: none;
+    display: block;
+    cursor: pointer;
+  }
+
+  @media (max-width: 600px) {
+    padding: 80px;
+    .description {
+      padding-top: 10px;
+      padding-bottom: 30px;
+      font-size: 30px;
+    }
   }
 `;
 
@@ -67,13 +84,16 @@ const Navbar = () => {
       </Nav>
       <Showcase>
         <div className="description">{details.description}</div>
-        <div className="location">{details.location}</div>
-        <div className="title">Total Number of Repositories</div>
-        <div className="numberRepos">{details.public_repos}</div>
-        <div className="title">GitHub URL</div>
-        <div className="repo">{details.url}</div>
-        <div className="title">Blog URL</div>
-        <div className="blog">{details.blog}</div>
+        <div className="title">
+          Total Number of Repositories : {details.public_repos}
+        </div>
+        <div className="location">Location : {details.location}</div>
+        <a className="title" href={details.url}>
+          GitHub URL : {details.html_url}
+        </a>
+        <a className="title" href={details.blog}>
+          Blog URL : {details.blog}
+        </a>
       </Showcase>
     </Fragment>
   );

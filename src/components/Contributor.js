@@ -1,11 +1,21 @@
 import React, { Fragment } from "react";
+import styled from "styled-components";
 
-const Contributor = ({ Contributor }) => {
+const Image = styled.img`
+  width: 40px;
+  height: 40px;
+  border-radius: 50px;
+`;
+
+const Contributor = ({ contributor }) => {
   return (
     <Fragment>
-      {/* <img src={Contributor.avatar_url} /> */}
-      <h5>Contributor Name</h5>
-      <div>{Contributor.login}</div>
+      <a href={contributor.html_url}>
+        {" "}
+        <Image src={contributor.avatar_url} />
+      </a>
+
+      <div>{contributor.login}</div>
     </Fragment>
   );
 };
