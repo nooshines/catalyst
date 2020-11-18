@@ -71,7 +71,7 @@ const Repository = ({ repository }) => {
     setContributors(res.data);
   };
 
-  console.log("cont", contributors);
+  const topContributors = contributors.slice(0, 5);
 
   return (
     <CardWrapper>
@@ -105,13 +105,16 @@ const Repository = ({ repository }) => {
       </GitHubRepo>
       <Wrapper>
         <Cont>Contributers:</Cont>
-        {contributors.length &&
-          contributors.map((contributor) => {
+        {topContributors.length &&
+          topContributors.map((contributor) => {
             return (
               <Contributor key={contributor.id} contributor={contributor} />
             );
           })}
       </Wrapper>
+      <div>{repository.full_name}</div>
+      <div>{repository.created_at}</div>
+      <div>{repository.updated_at}</div>
     </CardWrapper>
   );
 };

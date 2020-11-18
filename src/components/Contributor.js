@@ -7,16 +7,20 @@ const Image = styled.img`
   border-radius: 50px;
 `;
 
+const Wrapper = styled.div`
+  display: inline-block;
+  margin: 5px;
+`;
+
 const Contributor = ({ contributor }) => {
   return (
-    <Fragment>
+    <Wrapper>
       <a href={contributor.html_url}>
         {" "}
         <Image src={contributor.avatar_url} />
       </a>
-
       <div>{contributor.login}</div>
-    </Fragment>
+    </Wrapper>
   );
 };
 
